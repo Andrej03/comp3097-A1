@@ -18,7 +18,7 @@ struct ContentView: View {
     var body: some View {
         // Setting the code for the view
         // such as the Print position of the prime number
-        VStack(spaceing: 20) {
+        VStack(spacing: 20) {
             Text("Is this number prime? \(number)")
                 .font(.largeTitle)
                 .padding(.top)
@@ -27,10 +27,10 @@ struct ContentView: View {
                 .padding(.top)
 
             // Set the Prime or not prime buttons
-            Button("Prime"){
+            Button(action: {
                 isPrime = checkPrimeNumber(number: number)
-            }
-            {
+                number = Int.random(in: 1...500)
+            }) {
                 Text("Prime")
                     .font(.title2)
                     .padding()
@@ -39,10 +39,9 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
-            Button("Not Prime"){
+            Button(action: {
                 isPrime = !checkPrimeNumber(number: number)
-            }
-            {
+            }) {
                 Text("Not Prime")
                     .font(.title2)
                     .padding()
@@ -56,13 +55,20 @@ struct ContentView: View {
     }
 
     func checkPrimeNumber(number: Int) -> Bool {
-        // Check if the number is prime
-        if number > 1 else { return false }
-        for i in 2..<number {
-            if number % i == 0 {
-                return false
-            }
+    if number <= 1 {
+        return false
+    }
+    for i in 2..<number {
+        if number % i == 0 {
+            return false
         }
-        return true
+    }
+    return true
+    }
+
+    if let isUserCorrect = isPrime {
+    Text(isUserCorrect ? "Correct!" : "Not Correct!")
+        .font(.title)
+        .padding()
     }
 }
