@@ -79,9 +79,36 @@ struct ContentView: View {
     return true
     }
 
+    // Provideing the feedback icon to the player
     if let isUserCorrect = isPrime {
-    Text(isUserCorrect ? "Correct!" : "Not Correct!")
-        .font(.title)
-        .padding()
+    if isUserCorrect {
+        // Use Google fonts to find a image icon, convert to apple style UI
+        // Google image of a checkmark for correct answer
+        if let checkImage = UIImage(named: "check_circle_outline") {
+            Image(uiImage: checkImage)
+                .frame(width: 50, height: 50)
+                .foregroundColor(.green)
+                .padding()
+        } else {
+            // If the image is not found, display the text as a fallback
+            Text("Correct!")
+                .font(.title)
+                .padding()
+        }
+    } else {
+        // Google image of an XCross for incorrect answer
+        if let cancelImage = UIImage(named: "cancel") {
+            Image(uiImage: cancelImage)
+                .frame(width: 50, height: 50)
+                .foregroundColor(.red)
+                .padding()
+        } else {
+            // If the image is not found, display the text as a fallback
+            Text("Not Correct!")
+                .font(.title)
+                .padding()
+        }
     }
+}
+
 }
