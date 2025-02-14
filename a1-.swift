@@ -67,6 +67,8 @@ struct ContentView: View {
         .padding()
     }
 
+    // Function to check if the number is prime, 
+    // and also make sure the number is bigger than 1
     func checkPrimeNumber(number: Int) -> Bool {
     if number <= 1 {
         return false
