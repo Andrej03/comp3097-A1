@@ -101,8 +101,8 @@ struct ContentView: View {
                     .padding(.top)
             }
         }
-        .padding()
     }
+}
 
     // Function to check if the number is prime 
     // and ensure the number is bigger than 1
@@ -117,7 +117,6 @@ struct ContentView: View {
         }
         return true
     }
-}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
