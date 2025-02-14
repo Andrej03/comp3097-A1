@@ -98,7 +98,7 @@ struct ContentView: View {
             }
 
             // Displaying the number of tries
-            if count >= 10 {
+            if counter >= 10 {
                 Text("Your 10 tries are up!")
                     .font(.title2)
                     .padding(.top)
