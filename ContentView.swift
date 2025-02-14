@@ -1,14 +1,5 @@
 import SwiftUI
 
-@main
-struct PrimeNumberGuessingApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
-
 struct ContentView: View {
     // Setting a base of randomness for the printing of the numbers
     @State private var number: Int = Int.random(in: 1...500) // test base is anywhere from 1 to 500
@@ -45,6 +36,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
+            // stop after the 10 tries and follow to the final tally
             .disabled(counter >= 10)
 
             // Set the Not Prime button
@@ -64,19 +56,20 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
+            // stop after the 10 tries and follow to the final tally
             .disabled(counter >= 10)
 
             // Providing the feedback icon to the player
             if let isUserCorrect = isPrime {
                 if isUserCorrect {
-                    // Google image of a checkmark for correct answer
+                    // Google image of a Checkmark for correct answer
                     if let checkImage = UIImage(named: "check_circle_outline") {
                         Image(uiImage: checkImage)
                             .frame(width: 50, height: 50)
                             .foregroundColor(.green)
                             .padding()
                     } else {
-                        // Fallback if the image is not found
+                        // Fallback answer if the image is not found
                         Text("Correct!")
                             .font(.title)
                             .padding()
@@ -89,7 +82,7 @@ struct ContentView: View {
                             .foregroundColor(.red)
                             .padding()
                     } else {
-                        // Fallback if the image is not found
+                        // Fallback answer if the image is not found
                         Text("Not Correct!")
                             .font(.title)
                             .padding()
@@ -97,7 +90,7 @@ struct ContentView: View {
                 }
             }
 
-            // Displaying the number of tries
+            // Displaying the correct number of tries out of 10
             if counter >= 10 {
                 Text("Your 10 tries are up!")
                     .font(.title2)
@@ -111,7 +104,8 @@ struct ContentView: View {
         .padding()
     }
 
-    // Function to check if the number is prime and ensure the number is bigger than 1
+    // Function to check if the number is prime 
+    // and ensure the number is bigger than 1
     func checkPrimeNumber(number: Int) -> Bool {
         if number <= 1 {
             return false
@@ -122,5 +116,11 @@ struct ContentView: View {
             }
         }
         return true
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
