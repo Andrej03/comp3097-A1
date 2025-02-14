@@ -14,12 +14,16 @@ struct ContentView: View {
     @State private var number: Int = Int.random(in: 1...500) // test base is anywhere from 1 to 500
     // Setting the correctness of the prime number
     @State private var isPrime: Bool? = nil
+    // Setting fro the counter, for measuring of the players tries
+    @State private var counter: Int = 0
+    // Storage of the resulting trys
+    @State private var results: [Bool] = []
 
     var body: some View {
         // Setting the code for the view
         // such as the Print position of the prime number
         VStack(spacing: 20) {
-            Text("Is this number prime? \(number)")
+            Text("\(number)")
                 .font(.largeTitle)
                 .padding(.top)
             Text("Chose one of the options below")
@@ -28,7 +32,11 @@ struct ContentView: View {
 
             // Set the Prime or not prime buttons
             Button(action: {
-                isPrime = checkPrimeNumber(number: number)
+                // Determine and count the right answer
+                let rightAnswer = checkPrimeNumber(number: number)
+                isPrime = rightAnswer
+                results.append(rightAnswer)
+                counter += 1
                 number = Int.random(in: 1...500)
             }) {
                 Text("Prime")
@@ -40,7 +48,12 @@ struct ContentView: View {
                     .cornerRadius(10)
             }
             Button(action: {
-                isPrime = !checkPrimeNumber(number: number)
+                // Determine and count the wrong answer
+                let wrongAnswer = !checkPrimeNumber(number: number)
+                isPrime = wrongAnswer
+                results.append(wrongAnswer)
+                counter += 1
+                number = Int.random(in: 1...500)
             }) {
                 Text("Not Prime")
                     .font(.title2)
